@@ -1,0 +1,11 @@
+// Cloudflare Workers (statik varlıklar). Sunucu kodu yok; yalnızca dist/ yayınlanır.
+// "name", Cloudflare panelindeki Worker adıyla aynı olmalı.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "necmikayikci-com-tr",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

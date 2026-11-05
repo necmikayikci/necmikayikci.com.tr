@@ -1,6 +1,6 @@
 # necmikayikci.com.tr
 
-Tek sayfalık kişisel site (Astro, statik). Cloudflare Pages'ta yayınlanır.
+Tek sayfalık kişisel site (Astro, statik). Cloudflare Workers'ta (statik varlıklar) yayınlanır.
 
 ## Geliştirme
 
@@ -20,17 +20,30 @@ npm run typecheck  # astro check
 - `public/`: fontlar, görseller, `dosyalar/Vakit-2.1.dmg`, `_headers`, `robots.txt`, `sitemap.xml`.
 - `arsiv/`: önceki statik HTML sürümü (yayına girmez).
 
-## Cloudflare Pages
+## Cloudflare Workers
+
+Site, sunucu kodu olmayan bir Worker olarak yayınlanır; ayarlar `wrangler.jsonc` içinde
+(`dist/` klasörü, bulunamayan sayfalar için `404.html`). `wrangler.jsonc` içindeki `name`,
+paneldeki Worker adıyla aynı olmalı.
+
+Worker → **Settings → Build** (Git bağlantısı):
 
 | Ayar | Değer |
 |---|---|
-| Framework preset | Astro |
+| Git repository | `necmikayikci/necmikayikci.com.tr`, dal `main` |
 | Build command | `npm run build` |
-| Output directory | `dist` |
-| Node sürümü | `.node-version` dosyasından (22) |
-| Ortam değişkeni | `PUBLIC_ZIKIR_APK_URL` (aşağıya bakın) |
+| Deploy command | `npx wrangler deploy` |
+| Build variables | `PUBLIC_ZIKIR_APK_URL` (aşağıya bakın) |
 
-Cloudflare Pages tek dosya için 25 MiB sınırı koyar. Zikir APK'si (63 MB) bu yüzden `public/` içinde değil:
+`PUBLIC_ZIKIR_APK_URL` derleme sırasında okunur: **Build → Variables and secrets** bölümüne girilmeli,
+Worker'ın çalışma zamanı değişkenlerine değil. Değiştirdikten sonra yeniden deploy gerekir.
+
+Elle yayın (Git olmadan): `npx wrangler login`, ardından `npm run deploy`.
+
+Alan adı: Worker → **Settings → Domains & Routes → Add → Custom domain** → `necmikayikci.com.tr`
+(ve `www.`). Alan adının DNS'i Cloudflare'de olmalı.
+
+Cloudflare tek dosya için 25 MiB sınırı koyar. Zikir APK'si (63 MB) bu yüzden `public/` içinde değil:
 GitHub Releases ya da Cloudflare R2'ye yükleyip adresini `PUBLIC_ZIKIR_APK_URL` olarak girin.
 Değişken boşsa sitede "APK indir · yakında" pasif düğmesi görünür. APK dosyası şu an `arsiv/statik-site/projeler/dosyalar/Zikir-1.0.apk` konumunda.
 

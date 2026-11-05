@@ -14,3 +14,4 @@ node_modules/
 
 # büyük dosyalar Cloudflare Pages'e gitmez (25 MiB sınırı)
 *.apk
+.wrangler/
