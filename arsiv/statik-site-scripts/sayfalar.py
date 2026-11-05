@@ -57,7 +57,7 @@ def page(site: str, title: str, desc: str, canonical: str, body: str, noindex: b
   <a class="skip" href="#icerik">İçeriğe geç</a>
   <header class="site-head">
     <div class="wrap">
-      <a class="logo" href="{logo_href}" aria-label="Necmi Kayıkçı — ana sayfa"><svg aria-hidden="true"><use href="#mark"/></svg>Necmi Kayıkçı</a>
+      <a class="logo" href="{logo_href}" aria-label="Necmi Kayıkcı — ana sayfa"><svg aria-hidden="true"><use href="#mark"/></svg>Necmi Kayıkcı</a>
       <nav class="menu" aria-label="Ana menü">
         {nav}
       </nav>
@@ -82,7 +82,7 @@ def page(site: str, title: str, desc: str, canonical: str, body: str, noindex: b
     <div class="wrap">
       <div class="end" style="padding-top:28px">
         <div class="end-bot" style="padding-top:0">
-          <a class="logo" href="{logo_href}"><svg aria-hidden="true"><use href="#mark"/></svg>Necmi Kayıkçı</a>
+          <a class="logo" href="{logo_href}"><svg aria-hidden="true"><use href="#mark"/></svg>Necmi Kayıkcı</a>
           <nav aria-label="Alt menü">{foot_links}</nav>
           <span>© 2026</span>
         </div>
@@ -214,18 +214,18 @@ NOT_FOUND = """    <p class="crumb">Hata 404</p>
 """
 
 PAGES = {
-    ("projeler", "vakit/gizlilik/index.html"): ("Vakit gizlilik politikası — Necmi Kayıkçı",
+    ("projeler", "vakit/gizlilik/index.html"): ("Vakit gizlilik politikası — Necmi Kayıkcı",
         "Vakit macOS uygulamasının gizlilik politikası: hangi veriler, nerede ve neden kullanılır.",
         f"{PROJ}/vakit/gizlilik/", VAKIT_PRIVACY, False),
-    ("projeler", "zikir/gizlilik/index.html"): ("Zikir gizlilik politikası — Necmi Kayıkçı",
+    ("projeler", "zikir/gizlilik/index.html"): ("Zikir gizlilik politikası — Necmi Kayıkcı",
         "Zikir Android uygulamasının gizlilik politikası: verileriniz yalnızca cihazınızda.",
         f"{PROJ}/zikir/gizlilik/", ZIKIR_PRIVACY, False),
-    ("projeler", "destek/index.html"): ("Destek — Necmi Kayıkçı",
+    ("projeler", "destek/index.html"): ("Destek — Necmi Kayıkcı",
         "Vakit ve Zikir için kurulum yardımı, sık sorulan sorular ve iletişim.",
         f"{PROJ}/destek/", SUPPORT, False),
-    ("projeler", "404.html"): ("Sayfa bulunamadı — Necmi Kayıkçı", "Sayfa bulunamadı.", f"{PROJ}/",
+    ("projeler", "404.html"): ("Sayfa bulunamadı — Necmi Kayıkcı", "Sayfa bulunamadı.", f"{PROJ}/",
         NOT_FOUND.format(links='<a class="btn btn-green" href="/">Uygulamalara dön</a><a class="btn btn-line" href="' + HOME + '">Ana sayfa</a>'), True),
-    ("necmikayikci.com.tr", "404.html"): ("Sayfa bulunamadı — Necmi Kayıkçı", "Sayfa bulunamadı.", f"{HOME}/",
+    ("necmikayikci.com.tr", "404.html"): ("Sayfa bulunamadı — Necmi Kayıkcı", "Sayfa bulunamadı.", f"{HOME}/",
         NOT_FOUND.format(links='<a class="btn btn-green" href="/">Ana sayfaya dön</a><a class="btn btn-line" href="' + PROJ + '">Uygulamalar</a>'), True),
 }
 

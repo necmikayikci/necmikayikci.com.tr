@@ -4,7 +4,7 @@
 const MAIL = 'merhaba@necmikayikci.com.tr';
 
 export const site = {
-  name: 'Necmi Kayıkçı',
+  name: 'Necmi Kayıkcı',
   url: 'https://necmikayikci.com.tr',
   mail: MAIL,
   mailto: (subject?: string) => `mailto:${MAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`,

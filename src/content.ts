@@ -6,9 +6,9 @@ export type Icon =
   | 'wifi' | 'target' | 'down' | 'gift' | 'help';
 
 export const meta = {
-  title: 'Necmi Kayıkçı — Yazılım Geliştirici',
+  title: 'Necmi Kayıkcı — Yazılım Geliştirici',
   description:
-    'Necmi Kayıkçı — web, mobil ve masaüstü için sade uygulamalar geliştiren yazılım geliştirici. Vakit ve Zikir uygulamaları ücretsiz.',
+    'Necmi Kayıkcı — web, mobil ve masaüstü için sade uygulamalar geliştiren yazılım geliştirici. Vakit ve Zikir uygulamaları ücretsiz.',
 };
 
 export const nav = [
@@ -19,7 +19,7 @@ export const nav = [
 ];
 
 export const hero = {
-  hello: 'Merhaba, ben Necmi Kayıkçı',
+  hello: 'Merhaba, ben Necmi Kayıkcı',
   titleBefore: 'Hayatı kolaylaştıran',
   titleAccent: 'sade',
   titleAfter: 'uygulamalar yapıyorum',
