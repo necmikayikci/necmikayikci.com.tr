@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+import { about } from '../content';
+---
+
+<section id="hakkimda" aria-labelledby="hakkimda-baslik">
+  <div class="wrap about">
+    <!-- Fotoğraf eklemek için: .portrait içine <img src="/img/necmi.jpg" alt="Necmi Kayıkçı" width="800" height="1000"> koyun -->
+    <div class="portrait" aria-hidden="true">
+      <Icon name="mark" class="mark" />
+      <span class="initials">NK</span>
+    </div>
+    <div class="text">
+      <div class="badge" aria-hidden="true"><Icon name="code" /></div>
+      <h2 id="hakkimda-baslik">{about.title[0]}<br />{about.title[1]}</h2>
+      {about.paragraphs.map((p) => <p class="lead">{p}</p>)}
+      <ul class="stack" aria-label="Kullandığım teknolojiler">
+        {about.stack.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  section { padding: 96px 0 0; scroll-margin-top: 16px; }
+  .about { display: grid; grid-template-columns: 5fr 7fr; gap: 20px; }
+  .portrait { background: var(--green); border-radius: var(--r-md); min-height: 460px; position: relative; overflow: hidden; display: grid; place-items: center; }
+  .portrait :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .initials { font-family: var(--head); font-weight: 600; font-size: 120px; letter-spacing: -.05em; color: var(--page); }
+  .portrait :global(.mark) { position: absolute; right: -40px; bottom: -40px; width: 240px; height: 240px; color: rgba(251,248,242,.08); }
+  .text { background: var(--cream); border-radius: var(--r-md); padding: 48px; display: flex; flex-direction: column; }
+  h2 { font-size: clamp(34px, 4vw, 48px); line-height: 1.05; margin-top: 22px; }
+  .lead { font-size: 18px; margin-top: 18px; color: var(--ink-70); max-width: 560px; }
+  .lead + .lead { margin-top: 12px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 32px; list-style: none; }
+  .stack li { display: inline-flex; align-items: center; gap: 8px; background: var(--page); border-radius: 999px; padding: 9px 16px; font-size: 14px; font-weight: 500; }
+  .stack li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+
+  @media (max-width: 1000px) {
+    .about { grid-template-columns: 1fr; }
+    .portrait { min-height: 320px; }
+  }
+  @media (max-width: 640px) {
+    section { padding-top: 72px; }
+    .text { padding: 28px 24px; }
+    .initials { font-size: 88px; }
+  }
+</style>

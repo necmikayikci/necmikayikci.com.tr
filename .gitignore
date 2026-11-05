@@ -1,0 +1,16 @@
+# derleme çıktısı
+dist/
+.astro/
+
+# bağımlılıklar
+node_modules/
+
+# ortam
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# büyük dosyalar Cloudflare Pages'e gitmez (25 MiB sınırı)
+*.apk

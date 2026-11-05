@@ -1,0 +1,46 @@
+---
+import Legal from '../../layouts/Legal.astro';
+---
+
+<Legal title="Vakit gizlilik politikası — Necmi Kayıkçı" description="Vakit macOS uygulamasının gizlilik politikası: hangi veriler, nerede ve neden kullanılır.">
+    <p class="crumb"><a href="/">Ana sayfa</a> / <a href="/#vakit">Vakit</a> / Gizlilik</p>
+    <h1>Vakit gizlilik politikası</h1>
+    <p class="meta">Son güncelleme: 5 Kasım 2026 · Vakit 2.1 (macOS)</p>
+    <p class="lead">Vakit hesap istemez, reklam göstermez ve kullanım verisi toplamaz. Geliştiriciye hiçbir veri gönderilmez.</p>
+
+    <h2>Kısaca</h2>
+    <table class="table">
+      <tr><th>Veri</th><th>Ne için</th><th>Nereye gider</th></tr>
+      <tr><td>Yaklaşık konum (enlem/boylam)</td><td>Bulunduğunuz yerin namaz vakitlerini almak</td><td>Aladhan API (api.aladhan.com)</td></tr>
+      <tr><td>Konum → şehir adı</td><td>Panelde "İstanbul, Üsküdar" gibi yer adını göstermek</td><td>Apple'ın konum hizmetleri</td></tr>
+      <tr><td>Ayarlar, vakit önbelleği, ses dosyanız</td><td>Uygulamanın çalışması</td><td>Yalnızca Mac'inizde</td></tr>
+    </table>
+
+    <h2>Konum</h2>
+    <p>Vakit, izin verirseniz macOS Konum Servisleri'nden <strong>kilometre hassasiyetinde</strong> konumunuzu alır. Bunun yerine şehri elle de seçebilirsiniz.</p>
+    <p>Namaz vakitlerini almak için konumunuz (virgülden sonra 4 basamağa yuvarlanmış enlem ve boylam), seçili hesaplama yöntemi ve saat diliminiz <strong>api.aladhan.com</strong> adresine gönderilir. Vakitler ay bazında bir kez çekilir ve Mac'inizde saklanır. İnternet yoksa vakitler doğrudan cihazınızda hesaplanır; bu durumda hiçbir istek gönderilmez.</p>
+    <p>Konumun şehir/ilçe adına çevrilmesi ve elle şehir aramaları Apple'ın konum hizmetleri üzerinden yapılır.</p>
+
+    <h2>Cihazınızda saklananlar</h2>
+    <ul>
+      <li>Ayarlarınız (macOS kullanıcı tercihleri)</li>
+      <li>Vakit önbelleği: <code>~/Library/Application Support/Vakit/Cache</code></li>
+      <li>Seçtiğiniz ezan sesi dosyası: <code>~/Library/Application Support/Vakit/Sounds</code></li>
+    </ul>
+    <p>Bildirimler Mac'inizde yerel olarak planlanır; dışarıya bir bildirim servisi kullanılmaz.</p>
+
+    <h2>Toplanmayanlar</h2>
+    <p>Analitik, çökme raporu, reklam kimliği, hesap ya da e-posta bilgisi toplanmaz. Uygulamada üçüncü taraf analiz veya reklam kütüphanesi yoktur.</p>
+
+    <h2>Verilerinizi silmek</h2>
+    <p>Vakit'i Uygulamalar klasöründen silin ve <code>~/Library/Application Support/Vakit</code> klasörünü kaldırın. Konum iznini <strong>Sistem Ayarları → Gizlilik ve Güvenlik → Konum Servisleri</strong>'nden istediğiniz zaman geri alabilirsiniz.</p>
+
+    <h2>Üçüncü taraf hizmetler</h2>
+    <ul>
+      <li><a href="https://aladhan.com">Aladhan</a> — namaz vakitleri API'si. İstek sırasında IP adresinizi görür; kendi gizlilik koşulları geçerlidir.</li>
+      <li><a href="https://www.apple.com/tr/legal/privacy/">Apple</a> — konum ve yer adı hizmetleri.</li>
+    </ul>
+
+    <h2>İletişim</h2>
+    <p>Sorularınız için: <a href="mailto:merhaba@necmikayikci.com.tr?subject=Vakit%20gizlilik">merhaba@necmikayikci.com.tr</a></p>
+</Legal>

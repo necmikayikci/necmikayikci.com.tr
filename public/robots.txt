@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://necmikayikci.com.tr/sitemap.xml

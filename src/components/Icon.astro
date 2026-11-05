@@ -1,0 +1,55 @@
+---
+// Çizgi ikonlar ve logo işareti. Hepsi currentColor kullanır.
+import type { Icon } from '../content';
+
+interface Props {
+  name: Icon | 'mark' | 'spark' | 'bars' | 'x';
+  class?: string;
+  size?: number;
+}
+const { name, class: cls, size } = Astro.props;
+
+const stroke: Record<string, string> = {
+  moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+  dot: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/>',
+  code: '<path d="m8 7-5 5 5 5M16 7l5 5-5 5"/>',
+  car: '<path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM7 19v1M17 19v1M5 11h14"/>',
+  case: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/>',
+  store: '<path d="M4 9 5.5 4h13L20 9M4 9h16v11H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9M10 20v-5h4v5"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  bell: '<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/>',
+  wifi: '<path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5-2.8M19 13a10 10 0 0 0-2.3-1.7M12 20h.01"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/>',
+  down: '<path d="M12 4v12M6 11l6 6 6-6M5 20h14"/>',
+  gift: '<rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9S10 4 7.5 5 9 9 12 9zm0 0s2-5 4.5-4S15 9 12 9z"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V14M12 17h.01"/>',
+  bars: '<path d="M4 8h16M4 16h16"/>',
+  x: '<path d="M6 6l12 12M18 6 6 18"/>',
+};
+const filled: Record<string, { viewBox: string; body: string }> = {
+  mark: { viewBox: '0 0 32 32', body: '<path d="M13 4h15l-6 11H7z"/><path d="M10 17h15l-6 11H4z"/>' },
+  spark: { viewBox: '0 0 24 24', body: '<path d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/>' },
+};
+const f = filled[name];
+---
+
+{
+  f ? (
+    <svg class={cls} viewBox={f.viewBox} width={size} height={size} fill="currentColor" aria-hidden="true" set:html={f.body} />
+  ) : (
+    <svg
+      class={cls}
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      set:html={stroke[name]}
+    />
+  )
+}

@@ -1,0 +1,59 @@
+---
+// Üst menü. Ana sayfada çapa bağlantıları kullanır; alt sayfalarda (gizlilik, 404)
+// `base="/"` verilerek bağlantılar ana sayfaya yönlenir.
+import Icon from './Icon.astro';
+import { nav, hero } from '../content';
+
+interface Props {
+  base?: string;
+}
+const { base = '' } = Astro.props;
+const links = nav.map((l) => ({ ...l, href: `${base}${l.href}` }));
+const cta = { ...hero.primary, href: `${base}${hero.primary.href}` };
+---
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Necmi Kayıkçı — ana sayfa"><Icon name="mark" />Necmi Kayıkçı</a>
+    <nav class="menu" aria-label="Ana menü">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <div class="head-r">
+      <a class="btn btn-ink btn-sm" href={cta.href}>{cta.label}</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobil-menu" aria-label="Menüyü aç">
+        <Icon name="bars" class="bars" /><Icon name="x" class="x" />
+      </button>
+    </div>
+  </div>
+  <nav id="mobil-menu" class="m-menu" aria-label="Mobil menü" hidden>
+    {links.map((l) => <a href={l.href}>{l.label} <span aria-hidden="true">→</span></a>)}
+    <a class="btn btn-green" href={cta.href}>{cta.label}</a>
+  </nav>
+</header>
+
+<script>
+  // Mobil menü: aç/kapat, Esc ile kapat, bağlantıya ya da dışarı basınca kapat.
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+  const panel = document.getElementById('mobil-menu');
+  if (btn && panel) {
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
+      panel.hidden = !open;
+    };
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    panel.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) {
+        set(false);
+        btn.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      const t = e.target as Node;
+      if (!panel.hidden && !panel.contains(t) && !btn.contains(t)) set(false);
+    });
+  }
+</script>

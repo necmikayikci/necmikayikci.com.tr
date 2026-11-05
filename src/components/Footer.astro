@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config';
+
+interface Props {
+  base?: string;
+}
+const { base = '' } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-foot" id="iletisim">
+  <div class="wrap">
+    <div class="end">
+      <div class="end-top">
+        <div>
+          <div class="badge" aria-hidden="true"><Icon name="mail" /></div>
+          <h2>Bir fikriniz mi var?<br />Konuşalım.</h2>
+          <p>Proje, iş birliği ya da uygulamalarla ilgili geri bildirim için yazabilirsiniz.</p>
+        </div>
+        <div>
+          <a class="mailbox" href={site.mailto()}><span>{site.mail}</span><span class="btn btn-sm">Yaz <span aria-hidden="true">→</span></span></a>
+          <div class="socials">
+            <a href={site.github} rel="me">GitHub<span aria-hidden="true">&nbsp;↗</span></a>
+            <a href={site.linkedin} rel="me">LinkedIn<span aria-hidden="true">&nbsp;↗</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="end-bot">
+        <a class="logo" href="/"><Icon name="mark" />Necmi Kayıkçı</a>
+        <nav aria-label="Alt menü">
+          <a href={`${base}#uygulamalar`}>Uygulamalar</a>
+          <a href="/vakit/gizlilik/">Vakit gizlilik</a>
+          <a href="/zikir/gizlilik/">Zikir gizlilik</a>
+          <a href={`${base}#destek`}>Destek</a>
+        </nav>
+        <span>© {year}</span>
+      </div>
+    </div>
+  </div>
+</footer>

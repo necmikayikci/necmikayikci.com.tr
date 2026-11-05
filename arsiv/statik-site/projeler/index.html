@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uygulamalar ve Projeler — Necmi Kayıkçı</title>
+  <meta name="description" content="Vakit (macOS) ve Zikir (Android) uygulamalarını ücretsiz indirin. Necmi Kayıkçı'nın diğer projeleri.">
+  <link rel="canonical" href="https://projeler.necmikayikci.com.tr/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Uygulamalar ve Projeler — Necmi Kayıkçı">
+  <meta property="og:description" content="Vakit ve Zikir: ücretsiz, reklamsız, hesap gerektirmeyen sade uygulamalar.">
+  <meta property="og:url" content="https://projeler.necmikayikci.com.tr/">
+  <meta property="og:image" content="https://projeler.necmikayikci.com.tr/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#fbf8f2">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/base.css">
+  <style>
+    /* Giriş */
+    .hero { text-align: center; padding-top: 48px; padding-bottom: 72px; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; background: var(--cream); border-radius: 999px; padding: 6px 16px 6px 6px; font-size: 14px; font-weight: 500; }
+    .pill .badge { width: 28px; height: 28px; }
+    .pill .badge svg { width: 14px; height: 14px; }
+    .hero h1 { font-size: clamp(46px, 6.4vw, 84px); line-height: 1; margin-top: 28px; }
+    .hero h1 span { color: var(--green); }
+    .hero p { max-width: 540px; margin: 22px auto 0; font-size: 18px; color: var(--ink-70); }
+    .jump { display: flex; justify-content: center; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+
+    /* Uygulama kartı */
+    .app { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: var(--cream); border-radius: var(--r-lg); padding: 20px; scroll-margin-top: 16px; }
+    .app + .app { margin-top: 20px; }
+    .app-body { padding: 28px 24px 24px; display: flex; flex-direction: column; }
+    .app-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; list-style: none; }
+    .tag { font-size: 13px; font-weight: 500; background: var(--page); border-radius: 999px; padding: 6px 14px; }
+    .app h2 { font-size: clamp(40px, 4.4vw, 56px); line-height: 1; margin-top: 28px; }
+    .app .desc { color: var(--ink-70); margin-top: 14px; font-size: 17px; max-width: 460px; }
+    .features { list-style: none; margin-top: 26px; display: grid; gap: 12px; font-size: 15px; font-weight: 500; }
+    .features li { display: flex; align-items: flex-start; gap: 12px; }
+    .features li::before { content: ""; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; flex: none;
+      background: var(--green-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f6b4a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 13px no-repeat; }
+    .actions { margin-top: auto; padding-top: 32px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .file { margin-top: 14px; font-size: 13px; color: var(--ink-muted); }
+    .links { display: flex; gap: 6px 18px; flex-wrap: wrap; margin-top: 18px; font-size: 14px; font-weight: 500; }
+    .links a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; padding: 4px 0; }
+
+    /* Açılır bölümler */
+    details { margin-top: 12px; background: var(--page); border-radius: var(--r-sm); }
+    details:first-of-type { margin-top: 24px; }
+    summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding: 0 20px; font-weight: 600; font-size: 15px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--green); transition: transform .2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    .det { padding: 0 20px 18px; font-size: 14px; color: var(--ink-70); }
+    .det ol, .det ul { padding-left: 20px; display: grid; gap: 6px; }
+    .det strong { color: var(--ink); font-weight: 600; }
+    .det code { display: block; margin-top: 6px; font-size: 12px; background: var(--cream); padding: 8px 10px; border-radius: 10px; word-break: break-all; color: var(--ink); }
+    .det h3 { font-family: var(--body); font-size: 14px; font-weight: 600; letter-spacing: 0; color: var(--ink); margin: 4px 0 6px; }
+
+    .shot { background: var(--page); border-radius: var(--r-md); position: relative; overflow: hidden; min-height: 560px; display: grid; place-items: center; }
+    .shot::before { content: ""; position: absolute; width: 80%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, var(--green-soft) 0%, rgba(214,230,220,0) 68%); }
+    .shot .mac-shot { position: relative; width: 320px; border-radius: var(--r-sm); box-shadow: 0 40px 70px -16px rgba(21,40,31,.4); }
+    .shot .phone { position: absolute; top: 48px; width: 260px; padding: 9px; background: var(--ink); border-radius: 44px; box-shadow: 0 40px 70px -16px rgba(21,40,31,.45); }
+    .shot .phone img { border-radius: 36px; }
+    .shot .phone::before { content: ""; position: absolute; top: 20px; left: 50%; width: 78px; height: 22px; margin-left: -39px; background: var(--ink); border-radius: 999px; }
+    .float { position: absolute; background: #fff; border-radius: var(--r-sm); padding: 12px 16px 12px 12px; box-shadow: 0 16px 30px -10px rgba(21,40,31,.25); font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; z-index: 1; }
+    .float .badge { width: 32px; height: 32px; }
+    .float .badge svg { width: 15px; height: 15px; }
+    .f1 { left: 24px; bottom: 32px; }
+    .f2 { right: 24px; top: 32px; }
+    .spark { position: absolute; width: 28px; height: 28px; color: var(--green); opacity: .45; }
+
+    /* Diğer projeler */
+    section { padding: 112px 0 0; scroll-margin-top: 16px; }
+    .title { text-align: center; font-size: clamp(36px, 4.4vw, 54px); line-height: 1.08; margin-bottom: 14px; }
+    .sub { text-align: center; color: var(--ink-70); font-size: 17px; margin-bottom: 52px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: var(--cream); border-radius: var(--r-md); padding: 32px; position: relative; scroll-margin-top: 16px; display: flex; flex-direction: column; }
+    .card .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .card h3 { font-size: 28px; line-height: 1.15; margin-top: 22px; }
+    .card p { color: var(--ink-70); margin-top: 10px; font-size: 15px; }
+    .card .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 24px; list-style: none; }
+    .card .chips li { background: var(--page); border-radius: 12px; padding: 8px 12px; font-size: 13px; font-weight: 500; }
+    .card .state { font-size: 13px; color: var(--ink-muted); margin-top: 16px; }
+
+    .site-foot { padding-top: 112px; }
+
+    @media (max-width: 1000px) {
+      .app { grid-template-columns: 1fr; }
+      .shot { order: -1; min-height: 480px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .app { padding: 12px; border-radius: 26px; }
+      .app-body { padding: 20px 10px 14px; }
+      .app-top { flex-direction: column; align-items: start; }
+      .tags { justify-content: flex-start; }
+      .shot { min-height: 420px; border-radius: 20px; }
+      .shot .mac-shot { width: 240px; }
+      .shot .phone { width: 200px; top: 40px; border-radius: 36px; padding: 7px; }
+      .shot .phone img { border-radius: 30px; }
+      .f2 { display: none; }
+      .actions .btn { flex: 1 1 100%; }
+      .card { padding: 26px; border-radius: 24px; }
+      section { padding-top: 88px; }
+      .site-foot { padding-top: 88px; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 32 32"><path d="M13 4h15l-6 11H7z"/><path d="M10 17h15l-6 11H4z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM7 19v1M17 19v1M5 11h14"/></symbol>
+    <symbol id="i-case" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 5.5 4h13L20 9M4 9h16v11H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9M10 20v-5h4v5"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9S10 4 7.5 5 9 9 12 9zm0 0s2-5 4.5-4S15 9 12 9z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5-2.8M19 13a10 10 0 0 0-2.3-1.7M12 20h.01"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/></symbol>
+  </svg>
+
+  <a class="skip" href="#icerik">İçeriğe geç</a>
+
+  <header class="site-head">
+    <div class="wrap">
+      <a class="logo" href="https://necmikayikci.com.tr" aria-label="Necmi Kayıkçı — ana sayfa"><svg aria-hidden="true"><use href="#mark"/></svg>Necmi Kayıkçı</a>
+      <nav class="menu" aria-label="Ana menü">
+        <a href="#vakit">Vakit</a>
+        <a href="#zikir">Zikir</a>
+        <a href="#diger">Diğer projeler</a>
+        <a href="/destek/">Destek</a>
+      </nav>
+      <div class="head-r">
+        <a class="btn btn-ink btn-sm" href="https://necmikayikci.com.tr"><span aria-hidden="true">←</span> Ana sayfa</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobil-menu" aria-label="Menüyü aç">
+          <svg class="bars" aria-hidden="true"><use href="#i-bars"/></svg><svg class="x" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobil-menu" class="m-menu" aria-label="Mobil menü" hidden>
+      <a href="#vakit">Vakit <span aria-hidden="true">→</span></a>
+      <a href="#zikir">Zikir <span aria-hidden="true">→</span></a>
+      <a href="#diger">Diğer projeler <span aria-hidden="true">→</span></a>
+      <a href="/destek/">Destek <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ink" href="https://necmikayikci.com.tr">Ana sayfaya dön</a>
+    </nav>
+  </header>
+
+  <main id="icerik">
+    <div class="wrap hero">
+      <span class="pill"><span class="badge" aria-hidden="true"><svg><use href="#i-gift"/></svg></span>Ücretsiz · Reklamsız · Hesap gerektirmez</span>
+      <h1>Uygulamalar ve<br><span>projeler</span></h1>
+      <p>Kendi ihtiyacımdan doğan uygulamaları herkesin kullanabilmesi için paylaşıyorum. İndirin, kurun, kullanın.</p>
+      <div class="jump">
+        <a class="btn btn-line" href="#vakit">Vakit · macOS</a>
+        <a class="btn btn-line" href="#zikir">Zikir · Android</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <!-- VAKIT -->
+      <article class="app" id="vakit" aria-labelledby="vakit-baslik">
+        <div class="app-body">
+          <div class="app-top">
+            <div class="badge" aria-hidden="true"><svg><use href="#i-moon"/></svg></div>
+            <ul class="tags" aria-label="Sürüm bilgisi"><li class="tag">v2.1</li><li class="tag">macOS 14+</li><li class="tag">Apple Silicon + Intel</li></ul>
+          </div>
+          <h2 id="vakit-baslik">Vakit</h2>
+          <p class="desc">Menü çubuğunda bir sonraki namaz vaktine kalan süreyi gösteren, gürültüsüz bir macOS uygulaması.</p>
+          <ul class="features">
+            <li>Diyanet vakitleri; internet yoksa vakitler cihazda hesaplanır</li>
+            <li>İmsakiye: hafta, ay ve Ramazan tabloları</li>
+            <li>Ramazan modu: iftara ve sahura geri sayım</li>
+            <li>Vakit bildirimleri, ezan sesi ve sessiz saatler</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-green" href="/dosyalar/Vakit-2.1.dmg" download><svg aria-hidden="true"><use href="#i-down"/></svg>macOS için indir</a>
+          </div>
+          <p class="file">Vakit-2.1.dmg · 2,5 MB</p>
+
+          <details>
+            <summary>Nasıl kurulur?</summary>
+            <div class="det">
+              <ol>
+                <li><strong>Vakit-2.1.dmg</strong> dosyasını açın ve <strong>Vakit</strong>'i <strong>Uygulamalar</strong> klasörüne sürükleyin.</li>
+                <li>Vakit'i açın. macOS "doğrulanamadı" uyarısı verirse <strong>Tamam</strong>'a basın.</li>
+                <li><strong>Sistem Ayarları → Gizlilik ve Güvenlik</strong>'e gidin, aşağıdaki <strong>Yine de Aç</strong> düğmesine basın ve onaylayın.</li>
+                <li>Konum izni isterse verin; vakitler bulunduğunuz yere göre hesaplanır. İsterseniz şehri elle de seçebilirsiniz.</li>
+              </ol>
+              <p style="margin-top:10px">Bu uyarı, uygulama Apple'ın ücretli geliştirici imzasıyla imzalanmadığı için çıkar; bir kez onaylamanız yeterlidir.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Sürüm notları</summary>
+            <div class="det">
+              <h3>2.1</h3>
+              <ul>
+                <li>İmsakiye penceresi: hafta, ay ve Ramazan tabloları</li>
+                <li>Ramazan modu: "İftara" ve "Sahurun bitmesine" sayaçları, Kadir Gecesi notu</li>
+                <li>Ezan sesi: bildirim sesi, yumuşak zil ya da kendi ses dosyanız; ses düzeyi ve sessiz saatler</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Dosyayı doğrula (SHA-256)</summary>
+            <div class="det">
+              <p>İndirdiğiniz dosyanın değiştirilmediğini Terminal'de kontrol edebilirsiniz:</p>
+              <code>shasum -a 256 Vakit-2.1.dmg</code>
+              <code>e632f2f708ccd5ce08f5325c3468ffcf89f7508effb4e09415a0f261d7e10182</code>
+            </div>
+          </details>
+
+          <p class="links"><a href="/vakit/gizlilik/">Gizlilik politikası</a><a href="/destek/#vakit">Destek</a></p>
+        </div>
+        <div class="shot" aria-hidden="true">
+          <svg class="spark" style="left:12%;top:12%"><use href="#spark"/></svg>
+          <svg class="spark" style="right:14%;bottom:20%;width:20px;height:20px"><use href="#spark"/></svg>
+          <img class="mac-shot" src="img/vakit.png" alt="" width="656" height="972">
+          <div class="float f1"><span class="badge"><svg><use href="#i-wifi"/></svg></span>İnternetsiz çalışır</div>
+          <div class="float f2"><span class="badge"><svg><use href="#i-bell"/></svg></span>Vakit bildirimi</div>
+        </div>
+      </article>
+
+      <!-- ZIKIR -->
+      <article class="app" id="zikir" aria-labelledby="zikir-baslik">
+        <div class="app-body">
+          <div class="app-top">
+            <div class="badge" aria-hidden="true"><svg><use href="#i-dot"/></svg></div>
+            <ul class="tags" aria-label="Sürüm bilgisi"><li class="tag">v1.0</li><li class="tag">Android 7+</li></ul>
+          </div>
+          <h2 id="zikir-baslik">Zikir</h2>
+          <p class="desc">Zikirlerinizi sayın, günlük hedef belirleyin, sure okumalarınızı takip edin.</p>
+          <ul class="features">
+            <li>Dokun-say zikir sayacı ve günlük hedef</li>
+            <li>Sure takibi ve okuma ilerlemesi</li>
+            <li>İstatistikler ve geçmiş</li>
+            <li>Hatırlatma bildirimleri; verileriniz yalnızca cihazınızda</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-green" href="/dosyalar/Zikir-1.0.apk" download><svg aria-hidden="true"><use href="#i-down"/></svg>APK indir</a>
+            <span class="btn btn-line" aria-disabled="true">Google Play · yakında</span>
+          </div>
+          <p class="file">Zikir-1.0.apk · 63,4 MB</p>
+
+          <details>
+            <summary>Nasıl kurulur?</summary>
+            <div class="det">
+              <ol>
+                <li>APK'yı telefonunuzdan indirin ve indirilenlerden açın.</li>
+                <li>"Bu kaynaktan uygulama yüklenmesine izin ver" sorulursa tarayıcınız için <strong>izin verin</strong>.</li>
+                <li><strong>Yükle</strong>'ye basın. Google Play Protect uyarı gösterirse <strong>Daha fazla ayrıntı → Yine de yükle</strong>'yi seçin.</li>
+                <li>Hatırlatmalar için bildirim iznini verin.</li>
+              </ol>
+            </div>
+          </details>
+          <details>
+            <summary>Sürüm notları</summary>
+            <div class="det">
+              <h3>1.0</h3>
+              <ul><li>İlk sürüm: zikir sayacı, günlük hedef, sure takibi, istatistikler ve hatırlatmalar</li></ul>
+            </div>
+          </details>
+          <details>
+            <summary>Dosyayı doğrula (SHA-256)</summary>
+            <div class="det">
+              <p>Bilgisayarda Terminal ile kontrol edebilirsiniz:</p>
+              <code>shasum -a 256 Zikir-1.0.apk</code>
+              <code>f897e44ee854a3f73afe676706f2637c3f0aff8f609b3b88b9be5b1026fc298b</code>
+            </div>
+          </details>
+
+          <p class="links"><a href="/zikir/gizlilik/">Gizlilik politikası</a><a href="/destek/#zikir">Destek</a></p>
+        </div>
+        <div class="shot" aria-hidden="true">
+          <svg class="spark" style="left:14%;top:12%"><use href="#spark"/></svg>
+          <div class="phone"><img src="img/zikir.png" alt="" width="706" height="1600" loading="lazy"></div>
+          <div class="float f1"><span class="badge"><svg><use href="#i-target"/></svg></span>Günlük hedef</div>
+        </div>
+      </article>
+    </div>
+
+    <section id="diger" aria-labelledby="diger-baslik">
+      <div class="wrap">
+        <h2 class="title" id="diger-baslik">Diğer projeler</h2>
+        <p class="sub">Üzerinde çalıştığım web ve yapay zekâ projeleri. Henüz herkese açık değiller.</p>
+        <div class="grid">
+          <article class="card" id="arac-radar">
+            <div class="top"><div class="badge" aria-hidden="true"><svg><use href="#i-car"/></svg></div><span class="tag">Kapalı beta</span></div>
+            <h3>Araç Radar</h3>
+            <p>İkinci el araç ilanlarını analiz edip emsallerle karşılaştıran, adil fiyat tahmini çıkaran platform.</p>
+            <ul class="chips" aria-label="Teknolojiler"><li>Web</li><li>Tarayıcı eklentisi</li><li>Yapay zekâ</li></ul>
+          </article>
+          <article class="card" id="plugmesh">
+            <div class="top"><div class="badge" aria-hidden="true"><svg><use href="#i-store"/></svg></div><span class="tag">Shopify</span></div>
+            <h3>PlugMesh</h3>
+            <p>Shopify mağazaları için entegrasyon uygulaması.</p>
+            <ul class="chips" aria-label="Teknolojiler"><li>Web</li><li>E-ticaret</li></ul>
+          </article>
+          <article class="card" id="careerpilot">
+            <div class="top"><div class="badge" aria-hidden="true"><svg><use href="#i-case"/></svg></div><span class="tag">Geliştiriliyor</span></div>
+            <h3>CareerPilot AI</h3>
+            <p>CV ile iş ilanlarını eşleştiren, başvuru sürecine yardım eden yapay zekâ asistanı.</p>
+            <ul class="chips" aria-label="Teknolojiler"><li>.NET</li><li>React</li><li>Yapay zekâ</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="end">
+        <div class="end-top">
+          <div>
+            <div class="badge" aria-hidden="true"><svg><use href="#i-mail"/></svg></div>
+            <h2>Bir öneriniz mi var?</h2>
+            <p>Hata bildirimi, özellik isteği ya da iş birliği için yazabilirsiniz.</p>
+          </div>
+          <a class="mailbox" href="mailto:merhaba@necmikayikci.com.tr"><span>merhaba@necmikayikci.com.tr</span><span class="btn btn-sm">Yaz <span aria-hidden="true">→</span></span></a>
+        </div>
+        <div class="end-bot">
+          <a class="logo" href="https://necmikayikci.com.tr"><svg aria-hidden="true"><use href="#mark"/></svg>Necmi Kayıkçı</a>
+          <nav aria-label="Alt menü">
+            <a href="https://necmikayikci.com.tr">Ana sayfa</a>
+            <a href="/destek/">Destek</a>
+            <a href="/vakit/gizlilik/">Vakit gizlilik</a>
+            <a href="/zikir/gizlilik/">Zikir gizlilik</a>
+          </nav>
+          <span>© 2026</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+---
+import Icon from './Icon.astro';
+import { hero } from '../content';
+---
+
+<div class="wrap hero">
+  <div class="visual" aria-hidden="true">
+    <div class="glow"></div>
+    <Icon name="spark" class="spark s1" />
+    <Icon name="spark" class="spark s2" />
+    <div class="phone"><img src="/img/zikir.png" alt="" width="706" height="1600" fetchpriority="high" /></div>
+    <img class="mac" src="/img/vakit.png" alt="" width="656" height="972" fetchpriority="high" />
+    {
+      hero.chips.map((c, i) => (
+        <div class={`chip c${i + 1}`}>
+          <div class="badge"><Icon name={c.icon} /></div>
+          {c.text}
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="copy">
+    <!-- Fotoğraf eklemek için: .avatar içine <img src="/img/necmi.jpg" alt=""> koyun -->
+    <span class="hello"><span class="avatar" aria-hidden="true">NK</span>{hero.hello}</span>
+    <h1>{hero.titleBefore} <span>{hero.titleAccent}</span> {hero.titleAfter}</h1>
+    <p class="lead">{hero.lead}</p>
+    <div class="actions">
+      <a class="btn btn-green" href={hero.primary.href}>{hero.primary.label}</a>
+      <a class="btn btn-line" href={hero.secondary.href}>{hero.secondary.label}</a>
+    </div>
+    <ul class="facts" aria-label="Uygulamalar hakkında">
+      {hero.facts.map((f) => <li>{f}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding-top: 32px; padding-bottom: 72px; }
+  .visual { position: relative; height: 600px; }
+  .glow { position: absolute; left: 8%; top: 12%; width: 78%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, var(--green-soft) 0%, rgba(214,230,220,0) 68%); }
+  .phone { position: absolute; left: 22%; top: 20px; width: 250px; padding: 9px; background: var(--ink); border-radius: 44px; box-shadow: 0 50px 80px -20px rgba(21,40,31,.45); transform: rotate(-8deg); }
+  .phone img { border-radius: 36px; }
+  .phone::before { content: ""; position: absolute; top: 20px; left: 50%; width: 78px; height: 22px; margin-left: -39px; background: var(--ink); border-radius: 999px; z-index: 1; }
+  .mac { position: absolute; left: 47%; top: 150px; width: 260px; border-radius: var(--r-sm); box-shadow: 0 40px 70px -16px rgba(21,40,31,.45); transform: rotate(6deg); }
+  .chip { position: absolute; background: #fff; border-radius: 20px; padding: 16px 18px; box-shadow: 0 20px 40px -12px rgba(21,40,31,.22); font-family: var(--head); font-weight: 500; font-size: 17px; line-height: 1.2; letter-spacing: -.02em; }
+  .chip .badge { margin-bottom: 12px; }
+  .c1 { left: 2%; top: 150px; width: 160px; }
+  .c2 { left: 0; top: 390px; display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; }
+  .c2 .badge { margin: 0; }
+  .visual :global(.spark) { position: absolute; width: 34px; height: 34px; color: var(--green); opacity: .5; }
+  .visual :global(.s1) { left: 66%; top: 40px; }
+  .visual :global(.s2) { left: 30%; top: 540px; width: 24px; height: 24px; }
+
+  .hello { display: inline-flex; align-items: center; gap: 12px; padding: 6px 18px 6px 6px; background: var(--cream); border-radius: 999px; font-size: 15px; font-weight: 500; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: var(--page); display: grid; place-items: center; overflow: hidden; font-family: var(--head); font-weight: 600; font-size: 14px; flex: none; }
+  .avatar :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  h1 { font-size: clamp(46px, 6vw, 80px); line-height: 1; margin-top: 24px; }
+  h1 span { color: var(--green); }
+  .lead { margin-top: 24px; max-width: 460px; font-size: 18px; color: var(--ink-70); }
+  .actions { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .facts { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 40px; font-size: 15px; font-weight: 500; }
+  .facts li { display: flex; align-items: center; gap: 8px; }
+  .facts li::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--green-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f6b4a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 12px no-repeat; }
+
+  @media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; padding-top: 8px; }
+    .copy { order: -1; }
+    .visual { height: 540px; max-width: 560px; width: 100%; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    .visual { height: 440px; }
+    .phone { width: 190px; left: 20%; border-radius: 34px; padding: 7px; }
+    .phone img { border-radius: 28px; }
+    .phone::before { top: 15px; width: 56px; height: 16px; margin-left: -28px; }
+    .mac { width: 180px; top: 120px; left: 46%; }
+    .c1 { top: 110px; width: 130px; font-size: 15px; padding: 12px 14px; }
+    .c2 { top: 300px; font-size: 14px; }
+    .visual :global(.s2) { top: 400px; }
+  }
+</style>

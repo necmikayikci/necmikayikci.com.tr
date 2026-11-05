@@ -1,0 +1,17 @@
+---
+import Legal from '../layouts/Legal.astro';
+---
+
+<Legal title="Sayfa bulunamadı — Necmi Kayıkçı" description="Sayfa bulunamadı." noindex>
+  <p class="crumb">Hata 404</p>
+  <h1>Bu sayfa bulunamadı.</h1>
+  <p class="lead">Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir.</p>
+  <p class="actions">
+    <a class="btn btn-green" href="/">Ana sayfaya dön</a>
+    <a class="btn btn-line" href="/#uygulamalar">Uygulamalar</a>
+  </p>
+</Legal>
+
+<style>
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+</style>

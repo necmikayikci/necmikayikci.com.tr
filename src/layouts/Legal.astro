@@ -1,0 +1,23 @@
+---
+// Gizlilik ve 404 gibi tek sütunlu metin sayfaları.
+import Base from './Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
+---
+
+<Base title={title} description={description} noindex={noindex}>
+  <Nav base="/" />
+  <main id="icerik" class="wrap">
+    <article class="doc">
+      <slot />
+    </article>
+  </main>
+  <Footer base="/" />
+</Base>
