@@ -17,7 +17,7 @@ npm run typecheck  # astro check
 - `src/config.ts`: e-posta, sosyal bağlantılar, indirme adresleri.
 - `src/components/`: bölümler (Nav, Hero, Apps, Projects, About, Support, Footer).
 - `src/pages/`: `index` (tek sayfa), `vakit/gizlilik`, `zikir/gizlilik`, `404`.
-- `public/`: fontlar, görseller, `dosyalar/Vakit-2.1.dmg`, `_headers`, `robots.txt`, `sitemap.xml`.
+- `public/`: fontlar, görseller, `_headers`, `robots.txt`, `sitemap.xml`.
 - `arsiv/`: önceki statik HTML sürümü (yayına girmez).
 
 ## Cloudflare Workers
@@ -33,19 +33,21 @@ Worker → **Settings → Build** (Git bağlantısı):
 | Git repository | `necmikayikci/necmikayikci.com.tr`, dal `main` |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
-| Build variables | `PUBLIC_ZIKIR_APK_URL` (aşağıya bakın) |
-
-`PUBLIC_ZIKIR_APK_URL` derleme sırasında okunur: **Build → Variables and secrets** bölümüne girilmeli,
-Worker'ın çalışma zamanı değişkenlerine değil. Değiştirdikten sonra yeniden deploy gerekir.
 
 Elle yayın (Git olmadan): `npx wrangler login`, ardından `npm run deploy`.
 
 Alan adı: Worker → **Settings → Domains & Routes → Add → Custom domain** → `necmikayikci.com.tr`
 (ve `www.`). Alan adının DNS'i Cloudflare'de olmalı.
 
-Cloudflare tek dosya için 25 MiB sınırı koyar. Zikir APK'si (63 MB) bu yüzden `public/` içinde değil:
-GitHub Releases ya da Cloudflare R2'ye yükleyip adresini `PUBLIC_ZIKIR_APK_URL` olarak girin.
-Değişken boşsa sitede "APK indir · yakında" pasif düğmesi görünür. APK dosyası şu an `arsiv/statik-site/projeler/dosyalar/Zikir-1.0.apk` konumunda.
+## İndirme dosyaları (R2)
+
+Workers'ta dosya başına 25 MiB sınırı olduğu için uygulama dosyaları repoda değil, Cloudflare R2'de durur:
+`files` bucket'ı → `apps/` klasörü (`Vakit-2.1.dmg`, `Zikir-1.0.apk`). Bucket'a bağlı alan adı
+`download.necmikayikci.com.tr`; adresler `https://download.necmikayikci.com.tr/apps/<dosya>`.
+Alan adı değişirse build değişkeni `PUBLIC_FILES_URL` ile ezilebilir (bkz. `src/config.ts`).
+
+Yeni sürümde: dosyayı R2'de `apps/` altına yükleyin, `src/config.ts` içindeki dosya adını ve
+`src/content.ts` içindeki sürüm, boyut ve SHA-256 değerlerini güncelleyin (`shasum -a 256 dosya`).
 
 `projeler.necmikayikci.com.tr` artık gerekmiyor. Eski bağlantılar için Cloudflare'de bir yönlendirme kuralı
 (Rules → Redirect Rules) ekleyin: `projeler.necmikayikci.com.tr/*` → `https://necmikayikci.com.tr/#uygulamalar` (301).
@@ -55,4 +57,3 @@ Değişken boşsa sitede "APK indir · yakında" pasif düğmesi görünür. APK
 - Fotoğraf: `public/img/necmi.jpg` ekleyip `Hero.astro` (.avatar) ve `About.astro` (.portrait) içindeki yorumlara göre `<img>` koyun.
 - `merhaba@necmikayikci.com.tr` adresinin çalıştığını ve LinkedIn bağlantısını doğrulayın.
 - `public/img/zikir.png` bir tasarım taslağı; gerçek ekran görüntüsüyle değiştirin.
-- Yeni sürümde: `content.ts` içindeki sürüm, boyut ve SHA-256 değerlerini güncelleyin (`shasum -a 256 dosya`).

@@ -1,5 +1,5 @@
-// Ortama bağlı ayarlar. Değerler .env (PUBLIC_*) ya da Cloudflare Pages ortam
-// değişkenlerinden gelir; yoksa varsayılana düşer.
+// Site ayarları. PUBLIC_* değerleri .env ya da Cloudflare build değişkenlerinden
+// gelir; yoksa varsayılana düşer.
 
 const MAIL = 'merhaba@necmikayikci.com.tr';
 
@@ -12,10 +12,12 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/necmikayikci',
 } as const;
 
-// İndirme adresleri. Vakit dmg'si küçük (2,5 MB), site içinden sunulur.
-// Zikir APK'sı 63 MB: Cloudflare Pages'in 25 MiB dosya sınırını aştığı için
-// dışarıda (GitHub Releases / R2) barındırılır. Adres yoksa buton "yakında" olur.
+// İndirme dosyaları Cloudflare R2'deki "files" bucket'ının apps/ klasöründe durur
+// (Workers'ta dosya başına 25 MiB sınırı var, APK 63 MB). Bucket'a bağlı alan adı
+// değişirse PUBLIC_FILES_URL ile ezilebilir.
+const FILES = ((import.meta.env.PUBLIC_FILES_URL as string | undefined)?.trim() || 'https://download.necmikayikci.com.tr').replace(/\/$/, '');
+
 export const downloads = {
-  vakit: '/dosyalar/Vakit-2.1.dmg',
-  zikir: (import.meta.env.PUBLIC_ZIKIR_APK_URL as string | undefined)?.trim() || '',
+  vakit: `${FILES}/apps/Vakit-2.1.dmg`,
+  zikir: `${FILES}/apps/Zikir-1.0.apk`,
 } as const;

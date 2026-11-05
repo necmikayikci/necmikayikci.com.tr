@@ -12,6 +12,7 @@ node_modules/
 # macOS
 .DS_Store
 
-# büyük dosyalar Cloudflare Pages'e gitmez (25 MiB sınırı)
+# uygulama dosyaları R2'de (files/apps/); repoya girmez
 *.apk
+*.dmg
 .wrangler/
